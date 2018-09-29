@@ -9,6 +9,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 
+import { CurrencyMaskModule } from "ng2-currency-mask";
+
 import { AppComponent } from './app.component';
 import { ProdutosBuscaComponent } from './produtos-busca/produtos-busca.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -29,7 +31,8 @@ import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro
     TableModule,
     TooltipModule,
     InputTextareaModule,
-    DropdownModule
+    DropdownModule,
+    CurrencyMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

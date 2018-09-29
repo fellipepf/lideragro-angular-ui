@@ -1,0 +1,61 @@
+<div class="container">
+  <form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Cadastro Produto</h1>
+
+      </div>
+
+      <div class="ui-g-6 ui-md-4 ui-fluid">
+        <label>Código de barras</label>
+        <input pInputText type="text">
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text">
+      </div>
+
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Valor</label>
+        <input pInputText type="text" placeholder="0,00">
+      </div>
+
+      <div class="ui-g-6 ui-fluid">
+        <label>Unidade Medida</label>
+        <p-dropdown [options]="unidade" placeholder="Selecione" [autoWidth]="false">
+        </p-dropdown>
+       
+      </div>
+
+      <div class="ui-g-6 ui-fluid">
+        <label>Categoria</label>
+        <input pInputText type="text">
+      </div>
+
+      <div class="ui-g-6 ui-fluid">
+        <label>Fornecedor</label>
+        <input pInputText type="text">
+      </div>
+
+      <div class="ui-g-6 ui-fluid">
+        <label>Fabricante</label>
+        <input pInputText type="text">
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Observações</label>
+        <textarea pInputTextarea rows=3></textarea>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="salvar"></button>
+        <button pButton type="button" label="novo" class="ui-button-info"></button>
+        <a href="#">Voltar para a busca</a>
+      </div>
+    </div>
+
+  </form>
+
+
+</div>

@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form autocomplete="off">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Cadastro Produto</h1>
@@ -13,20 +13,27 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Nome</label>
-        <input pInputText type="text">
+        <input pInputText type="text" name="nome" ngModel #nome="ngModel" required minlength="2">
+
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Informe o nome" *ngIf="nome.hasError('required') && nome.dirty"></p-message>
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Minimo de {{nome.errors.minlength.requiredLength}} caracteres" 
+          *ngIf="nome.hasError('minlength') && nome.dirty"></p-message>
+        </div>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input pInputText type="text" placeholder="0,00" 
-               currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , allowNegative: false}">
+        <input pInputText type="text" placeholder="0,00" name="valor" ngModel currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , allowNegative: false}">
       </div>
 
       <div class="ui-g-6 ui-fluid">
         <label>Unidade Medida</label>
-        <p-dropdown [options]="unidade"  [autoWidth]="false" [filter]="true">
+        <p-dropdown [options]="unidade" [autoWidth]="false" [filter]="true">
         </p-dropdown>
-       
+
       </div>
 
       <div class="ui-g-6 ui-fluid">

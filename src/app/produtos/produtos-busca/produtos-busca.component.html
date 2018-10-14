@@ -1,27 +1,40 @@
 <div class="container">
-  <div class="ui-g">
-      <div class="ui-g-12">
-          <h1>Produtos</h1>
-      </div>
+    <div class="ui-g">
 
-      <div class="ui-g-12 ui-fluid">
-          <label>Descrição</label>
-          <input type="text" pInputText />
-      </div>
+        <form autocomplete="off" (ngSubmit)="pesquisar()">
+            <div class="ui-g-12">
+                <h1>Produtos</h1>
+            </div>
 
-      <div class="ui-g-12">
-          <button pButton type="submit" label="Pesquisar"></button>
-      </div>
+            <div class="ui-g-4 ui-fluid">
+                <label>Código</label>
+                <input type="text" pInputText name="codigo" [(ngModel)]="filtro.codigo" />
+            </div>
+            
+            <div class="ui-g-4 ui-fluid">
+                <label>Código de Barras</label>
+                <input type="text" pInputText name="codigoBarras" [(ngModel)]="filtro.codigoBarras" />
+            </div>
+            <div class="ui-g-12 ui-fluid">
+                <label>Nome Produto</label>
+                <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome" />
+            </div>
 
-      <div class="ui-g">
-          <div class="ui-g-12">
-                <app-produtos-grid  [produtos]="produtos"> </app-produtos-grid>
-          </div>
-      </div>
 
-      <div class="ui-g-12">
-          <a pButton label="Novo produto"></a>
-      </div>
 
-  </div>
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Pesquisar"></button>
+            </div>
+        </form>
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <app-produtos-grid [produtos]="produtos"> </app-produtos-grid>
+            </div>
+        </div>
+
+        <div class="ui-g-12">
+            <a pButton label="Novo produto"></a>
+        </div>
+
+    </div>
 </div>

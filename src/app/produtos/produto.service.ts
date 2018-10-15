@@ -5,10 +5,14 @@ import { HttpParams } from '@angular/common/http';
 import { URLSearchParams, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+
+import { map } from "rxjs/operators";
+import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 export class ProdutoFiltro {
-  constructor() {}
+  constructor() { }
 
   nome: string;
   codigo: number;
@@ -29,28 +33,44 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(filtro: ProdutoFiltro): Observable<any> {
+  pesquisar(filtro: ProdutoFiltro): Promise<any> {
     let params = new HttpParams();
-    //const headers = new Headers();
-   
+
+
     params = params.append('page', filtro.pagina.toString());
     params = params.append('size', filtro.itensPorPagina.toString());
-   
-    if (filtro.nome){
+
+    if (filtro.nome) {
       params = params.append('nome', filtro.nome.trim())
     }
 
-    if (filtro.codigoBarras){
+    if (filtro.codigoBarras) {
       params = params.append('codigoBarras', filtro.codigoBarras.toString())
     }
 
-    if (filtro.codigo){
+    if (filtro.codigo) {
       params = params.append('id', filtro.codigo.toString())
     }
 
-    return this.http.get<any>(`${this.produtosUrl}?resumo`, { params}  );
+    return this.http.get<any>(`${this.produtosUrl}?resumo`, { params })
+      .toPromise()
+      .then(response => {
+        let produtos = response.content;
 
+        let resultado = {
+          produtos,
+          total: response.totalElements
+        };
+        console.log(response);
+        return resultado;
+      });
   }
+
+  excluir(codigo: number): Observable<void> {
+    return this.http.delete(`${this.produtosUrl}/${codigo}`)
+      .map(() => null);
+  }
+
   /*
     return this.http.get(`${this.produtosUrl}?resumo`)
       .toPromise()

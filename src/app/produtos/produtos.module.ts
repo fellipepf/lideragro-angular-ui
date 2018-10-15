@@ -15,7 +15,6 @@ import { MessageModule } from 'primeng/message';
 
 import { ProdutosBuscaComponent } from './produtos-busca/produtos-busca.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
-import { ProdutosGridComponent } from './produtos-grid/produtos-grid.component';
 
 @NgModule({
   imports: [
@@ -35,8 +34,7 @@ import { ProdutosGridComponent } from './produtos-grid/produtos-grid.component';
   ],
   declarations: [
     ProdutosBuscaComponent,
-    ProdutosCadastroComponent,
-    ProdutosGridComponent
+    ProdutosCadastroComponent
   ],
   exports: [
     ProdutosBuscaComponent,

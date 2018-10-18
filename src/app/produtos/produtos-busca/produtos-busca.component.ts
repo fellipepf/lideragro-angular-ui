@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProdutoService, ProdutoFiltro } from '../produto.service';
 
-import { LazyLoadEvent } from 'primeng/components/common/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
+
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-produtos-busca',
@@ -16,7 +18,10 @@ export class ProdutosBuscaComponent implements OnInit {
   totalRegistros = 0;
   @ViewChild('tabela') grid;
 
-  constructor(private produtoService: ProdutoService) {
+  constructor(
+    private produtoService: ProdutoService,
+    private toasty: ToastyService,
+    private confirmation: ConfirmationService) {
 
   }
 
@@ -42,6 +47,17 @@ export class ProdutosBuscaComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
+  confimarExclusao(produto: any) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(produto);
+
+      }
+    });
+  }
+
+
   excluir(produto: any) {
     this.produtoService.excluir(produto.id)
       .subscribe(() => {
@@ -49,6 +65,8 @@ export class ProdutosBuscaComponent implements OnInit {
         if (this.grid.first !== 0) {
           this.grid.first = 0;
         }
+
+        this.toasty.success('Produto excluido com sucesso');
       }
       );
   }

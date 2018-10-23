@@ -1,5 +1,5 @@
 <div class="container">
-  <form autocomplete="off">
+  <form autocomplete="off" (ngSubmit)="salvar()">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Cadastro Produto</h1>
@@ -8,12 +8,12 @@
 
       <div class="ui-g-6 ui-md-4 ui-fluid">
         <label>Código de barras</label>
-        <input pInputText type="text">
+        <input pInputText type="text" name="codigoBarras" [(ngModel)]="produto.codigoBarras">
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Nome</label>
-        <input pInputText type="text" name="nome" ngModel #nome="ngModel" required minlength="2">
+        <input pInputText type="text" name="nome"  #nome="ngModel" required minlength="2" [(ngModel)]="produto.nome">
 
         <div class="ui-grid-col-4">
           <p-message severity="error" text="Informe o nome" *ngIf="nome.hasError('required') && nome.dirty"></p-message>
@@ -26,19 +26,21 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input pInputText type="text" placeholder="0,00" name="valor" ngModel currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , allowNegative: false}">
+        <input pInputText type="text" placeholder="0,00" name="valor" ngModel [(ngModel)]="produto.precoVenda" currencyMask 
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , allowNegative: false}">
       </div>
 
       <div class="ui-g-6 ui-fluid">
         <label>Unidade Medida</label>
-        <p-dropdown [options]="unidade" [autoWidth]="false" [filter]="true">
+        <p-dropdown [options]="unidades" [autoWidth]="false" [filter]="true" name="unidadeMedida" [(ngModel)]="produto.unidadeMedida.id">
         </p-dropdown>
 
       </div>
 
       <div class="ui-g-6 ui-fluid">
         <label>Categoria</label>
-        <input pInputText type="text">
+        <p-dropdown [options]="categorias" [autoWidth]="false" name="categoria" [(ngModel)]="produto.categoria.id">
+          </p-dropdown>
       </div>
 
       <div class="ui-g-6 ui-fluid">
@@ -53,7 +55,7 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Observações</label>
-        <textarea pInputTextarea rows=3></textarea>
+        <textarea pInputTextarea rows=3 name="observacoes" [(ngModel)]="produto.observacoes"></textarea>
       </div>
 
       <div class="ui-g-12">

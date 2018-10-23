@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { URLSearchParams, RequestOptions } from '@angular/http';
 
@@ -10,6 +9,8 @@ import 'rxjs/add/operator/map';
 import { map } from "rxjs/operators";
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
+
+import { Produto } from '../core/model';
 
 export class ProdutoFiltro {
   constructor() { }
@@ -69,6 +70,14 @@ export class ProdutoService {
   excluir(codigo: number): Observable<void> {
     return this.http.delete(`${this.produtosUrl}/${codigo}`)
       .map(() => null);
+  }
+
+  adicionar(produto: Produto): Observable<Produto>{
+    console.log(produto);
+    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+
+    return this.http.post<Produto>(this.produtosUrl, JSON.stringify(produto), {headers} )
+    .map(() => null);
   }
 
   /*

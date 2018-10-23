@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProdutoService, ProdutoFiltro } from '../produto.service';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
-
 import { ToastyService } from 'ng2-toasty';
+
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { ProdutoService, ProdutoFiltro } from '../produto.service';
 
 @Component({
   selector: 'app-produtos-busca',
@@ -20,6 +21,7 @@ export class ProdutosBuscaComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
+    private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService) {
 
@@ -38,7 +40,8 @@ export class ProdutosBuscaComponent implements OnInit {
           this.produtos = resultado.produtos,
             this.totalRegistros = resultado.total
 
-        });
+        })
+        .catch(erro => this.errorHandler.handle(erro));
     // .then(produtos => this.produtos = produtos);
   }
 
@@ -67,7 +70,8 @@ export class ProdutosBuscaComponent implements OnInit {
         }
 
         this.toasty.success('Produto excluido com sucesso');
-      }
+      },
+      erro => this.errorHandler.handle(erro)
       );
   }
 }

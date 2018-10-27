@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { UnidadeMedidaService } from 'src/app/unidadeMedida/unidade-medida.service';
@@ -36,20 +37,63 @@ export class ProdutosCadastroComponent implements OnInit {
     private categoriaService: CategoriaService,
     private produtoService: ProdutoService,
     private toasty: ToastyService,
-    private erroHandler: ErrorHandlerService
+    private erroHandler: ErrorHandlerService,
+    private rota: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
+
+    const idProduto = this.rota.snapshot.params['id'];
+    if (idProduto){
+      this.carregarProduto(idProduto);
+    }
+
     this.carregarUnidadeMedida();
     this.carregarCategoria();
   }
 
-  salvar(){
-    console.log(this.produto);
+  get editandoProduto(){
+    return Boolean(this.produto.id);
+  }
+
+  carregarProduto(id: number){
+    
+    this.produtoService.buscarPorId(id)
+    .subscribe(produto => {
+      this.produto = produto;
+    })
+     erro => this.erroHandler.handle(erro)
+  }
+
+  salvar() {
+    if (this.editandoProduto) {
+      this.atualizarProduto();
+    } else {
+      this.adicionarProduto();
+    }
+
+  }
+
+  adicionarProduto(){
     this.produtoService.adicionar(this.produto)
-    .subscribe(() => {
- 
+    .subscribe(produtoGravado => {
+
       this.toasty.success('Produto adicionado com sucesso');
+      console.log(produtoGravado);
+      this.router.navigate(['/produtos', produtoGravado.id]);
+    },
+    erro => this.erroHandler.handle(erro)
+    );
+
+  }
+
+  atualizarProduto(){
+    this.produtoService.atualizar(this.produto)
+    .subscribe(produto => {
+      this.produto = produto;
+ 
+      this.toasty.success('Produto atualizado com sucesso');
     },
     erro => this.erroHandler.handle(erro)
     );
@@ -83,7 +127,10 @@ export class ProdutosCadastroComponent implements OnInit {
          .map( c => ({ label: c.nome, value: c.id} ))
         
       });
-     
-     
+
+  }
+
+  novo(){
+    this.router.navigate(['/produtos/novo']);
   }
 }

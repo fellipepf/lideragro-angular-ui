@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
@@ -19,10 +20,12 @@ import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     CurrencyMaskModule,
     
-    FormsModule,
     InputTextModule,
     ButtonModule,
     TableModule,

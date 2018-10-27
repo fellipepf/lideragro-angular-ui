@@ -14,8 +14,8 @@
 
   <ul class="navbar-menu" [hidden]="!exibirMenu">
     <li class="navbar-usuario">Fellipe</li>
-    <li class="navbar-menu-item"><a href="#">Produtos</a></li>
-    <li class="navbar-menu-item"><a href="#">Categorias</a></li>
-    <li class="navbar-menu-item"><a href="#">Lista Preço</a></li>
+    <li class="navbar-menu-item" routerLinkActive="ativo"><a routerLink="/produtos">Produtos</a></li>
+    <li class="navbar-menu-item" routerLinkActive="ativo"><a routerLink="/produtos/novo">Novo Produto</a></li>
+    <li class="navbar-menu-item" routerLinkActive="ativo"><a href="#">Lista Preço</a></li>
   </ul>
 </nav>

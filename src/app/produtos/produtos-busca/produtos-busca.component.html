@@ -52,7 +52,9 @@
                             <td>{{produto.nome}}</td>
                             <td>{{produto.preco | number: '1.2-2'}}</td>
                             <td class="col-acoes">
-                                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" class="botao"></a>
+                                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" class="botao"
+                                [routerLink]="['/produtos', produto.id]"></a>
+                                
                                 <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" 
                                         (click)="confimarExclusao(produto)"> </button>
                             </td>
@@ -66,7 +68,7 @@
         </div>
 
         <div class="ui-g-12">
-            <a pButton label="Novo produto"></a>
+            <a pButton label="Novo produto" routerLink="/produtos/novo"></a>
         </div>
 
     </div>

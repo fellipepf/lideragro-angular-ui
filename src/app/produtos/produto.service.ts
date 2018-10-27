@@ -62,23 +62,22 @@ export class ProdutoService {
           produtos,
           total: response.totalElements
         };
-        console.log(response);
+
         return resultado;
       });
   }
 
-  excluir(codigo: number): Observable<void> {
-    return this.http.delete(`${this.produtosUrl}/${codigo}`)
+  excluir(id: number): Observable<void> {
+    return this.http.delete(`${this.produtosUrl}/${id}`)
       .map(() => null);
   }
 
   adicionar(produto: Produto): Observable<Produto>{
-    console.log(produto);
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
     return this.http.post<Produto>(this.produtosUrl, JSON.stringify(produto), {headers} )
-    .map(() => null);
-  }
+    .pipe();
+}
 
   /*
     return this.http.get(`${this.produtosUrl}?resumo`)
@@ -94,4 +93,24 @@ export class ProdutoService {
  pesquisar() {
    return this.http.get(`${this.produtosUrl}`)
  }*/
+
+  atualizar(produto: Produto): Observable<Produto> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+
+    return this.http.put<Produto>(`${this.produtosUrl}/${produto.id}`, JSON.stringify(produto), { headers })
+    .map(
+      products => {
+      return products; 
+      
+       } );
+  }
+
+  buscarPorId(id: number): Observable<Produto> {
+    return this.http.get<Produto>(`${this.produtosUrl}/${id}`)
+    .map(
+      products => {
+      return products; 
+      
+       } );
+  }
 }

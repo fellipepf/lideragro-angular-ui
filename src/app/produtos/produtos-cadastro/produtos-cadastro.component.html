@@ -1,5 +1,5 @@
 <div class="container">
-  <form autocomplete="off" (ngSubmit)="salvar()">
+  <form autocomplete="off" #f="ngForm" (ngSubmit)="salvar(f)">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>{{ editandoProduto ? 'Edição de' : 'Cadastro novo' }} Produto</h1>
@@ -32,14 +32,14 @@
 
       <div class="ui-g-6 ui-fluid">
         <label>Unidade Medida</label>
-        <p-dropdown [options]="unidades" [autoWidth]="false" [filter]="true" name="unidadeMedida" [(ngModel)]="produto.unidadeMedida.id">
+        <p-dropdown [options]="unidades" [autoWidth]="false" [filter]="true" name="unidadeMedida" placeholder="Selecione" [(ngModel)]="produto.unidadeMedida.id">
         </p-dropdown>
 
       </div>
 
       <div class="ui-g-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" [autoWidth]="false" name="categoria" [(ngModel)]="produto.categoria.id">
+        <p-dropdown [options]="categorias" [autoWidth]="false" name="categoria" placeholder="Selecione" [(ngModel)]="produto.categoria.id">
           </p-dropdown>
       </div>
 
@@ -60,7 +60,7 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="salvar"></button>
-        <button pButton type="button" label="novo" class="ui-button-info" (click)="novo()"></button>
+        <button pButton type="button" label="novo" class="ui-button-info" (click)="novo(f)"></button>
         <a routerLink="/produtos">Voltar para a busca</a>
       </div>
     </div>

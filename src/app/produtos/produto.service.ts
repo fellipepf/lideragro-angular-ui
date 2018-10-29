@@ -19,7 +19,7 @@ export class ProdutoFiltro {
   codigo: number;
   codigoBarras: number;
   pagina = 0;
-  itensPorPagina = 3;
+  itensPorPagina = 5;
 }
 
 @Injectable({

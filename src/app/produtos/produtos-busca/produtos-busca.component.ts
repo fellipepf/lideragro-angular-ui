@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 import { ToastyService } from 'ng2-toasty';
@@ -23,12 +24,14 @@ export class ProdutosBuscaComponent implements OnInit {
     private produtoService: ProdutoService,
     private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
-    private confirmation: ConfirmationService) {
+    private confirmation: ConfirmationService,
+    private title: Title
+    ) {
 
   }
 
   ngOnInit() {
-    // this.pesquisar();
+    this.title.setTitle('Busca de Produtos');
   }
 
   pesquisar(pagina = 0) {

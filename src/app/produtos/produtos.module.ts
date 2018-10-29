@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
@@ -16,11 +15,11 @@ import { MessageModule } from 'primeng/message';
 
 import { ProdutosBuscaComponent } from './produtos-busca/produtos-busca.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
+import { ProdutosRoutingModule } from './produtos-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
 
@@ -33,15 +32,17 @@ import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro
     InputTextareaModule,
     DropdownModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+
+    ProdutosRoutingModule
   ],
   declarations: [
     ProdutosBuscaComponent,
     ProdutosCadastroComponent
   ],
   exports: [
-    ProdutosBuscaComponent,
-    ProdutosCadastroComponent
+    // ProdutosBuscaComponent,
+    // ProdutosCadastroComponent
   ]
 })
 export class ProdutosModule { }

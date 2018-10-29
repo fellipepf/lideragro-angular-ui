@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { UnidadeMedidaService } from 'src/app/unidadeMedida/unidade-medida.service';
@@ -9,7 +11,6 @@ import { Produto } from 'src/app/core/model';
 import { Observable } from 'rxjs/Observable';
 import { map } from "rxjs/operators";
 import 'rxjs/add/operator/map';
-import { FormControl } from '@angular/forms';
 
 import { ToastyService } from 'ng2-toasty';
 import { CategoriaService } from 'src/app/categoria/categoria.service';
@@ -39,10 +40,13 @@ export class ProdutosCadastroComponent implements OnInit {
     private toasty: ToastyService,
     private erroHandler: ErrorHandlerService,
     private rota: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {}
 
   ngOnInit() {
+
+    this.title.setTitle('Cadastro de Produto');
 
     const idProduto = this.rota.snapshot.params['id'];
     if (idProduto){
@@ -62,6 +66,8 @@ export class ProdutosCadastroComponent implements OnInit {
     this.produtoService.buscarPorId(id)
     .subscribe(produto => {
       this.produto = produto;
+
+      this.atualizarTituloEdicao();
     })
      erro => this.erroHandler.handle(erro)
   }
@@ -94,6 +100,7 @@ export class ProdutosCadastroComponent implements OnInit {
       this.produto = produto;
  
       this.toasty.success('Produto atualizado com sucesso');
+      this.atualizarTituloEdicao();
     },
     erro => this.erroHandler.handle(erro)
     );
@@ -130,7 +137,14 @@ export class ProdutosCadastroComponent implements OnInit {
 
   }
 
-  novo(){
+  novo(form: FormControl){
+    form.reset(); 
+    this.produto = new Produto();
+    
     this.router.navigate(['/produtos/novo']);
+  }
+
+  atualizarTituloEdicao(){
+    this.title.setTitle(`Edição de Produto: ${this.produto.nome}`);
   }
 }

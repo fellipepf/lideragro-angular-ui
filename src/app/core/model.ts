@@ -1,7 +1,13 @@
 
+export class Departamento {
+    id: number;
+    nome: string;
+}
+
 export class Categoria {
     id: number;
     nome: string;
+    departamento = new Departamento();
     
 }
 

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { Categoria } from 'src/app/core/model';
+import { CategoriaService } from '../categoria.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-categoria-cadastro',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriaCadastroComponent implements OnInit {
 
-  constructor() { }
+  categoria = new Categoria();
+  categorias: Array<any>;
+  @ViewChild('tabela') grid;
+
+  constructor(
+    private categoriaService: CategoriaService,
+    private errorHandler: ErrorHandlerService
+  ) {}
 
   ngOnInit() {
+    this.pesquisar();
   }
+  pesquisar() {
+    
+    this.categoriaService.listarTodas()
+      .subscribe(
+        resultado => {
+          this.categorias = resultado
 
+        })
+        erro => this.errorHandler.handle(erro);
+    // .then(produtos => this.produtos = produtos);
+  }
 }

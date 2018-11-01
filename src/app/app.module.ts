@@ -11,6 +11,8 @@ import { ProdutosModule } from './produtos/produtos.module';
 import { CoreModule } from './core/core.module';
 
 import { AppRoutingModule } from './app-routing.module';
+import { CategoriaModule } from './categoria/categoria.module';
+import { DepartamentosModule } from './departamentos/departamentos.module';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
 
     ProdutosModule,
+    CategoriaModule,
+    DepartamentosModule,
     CoreModule,
     AppRoutingModule
 

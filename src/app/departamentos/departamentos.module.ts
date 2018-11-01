@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { TooltipModule } from 'primeng/tooltip';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { InputTextModule } from 'primeng/inputtext';
-import { TooltipModule } from 'primeng/tooltip';
-import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
-import { CategoriaCadastroComponent } from './categoria-cadastro/categoria-cadastro.component';
-import { Routes, RouterModule } from '@angular/router';
-
+import { DepartamentosCadastroComponent } from './departamentos-cadastro/departamentos-cadastro.component';
+import { CategoriaCadastroComponent } from '../categoria/categoria-cadastro/categoria-cadastro.component';
 
 const rotas: Routes = [
   { path: 'categorias', component: CategoriaCadastroComponent }
 
 ];
-
 
 @NgModule({
   imports: [
@@ -26,7 +25,6 @@ const rotas: Routes = [
     ReactiveFormsModule,
 
     TooltipModule,
-
     RouterModule.forChild(rotas),
 
     MessagesModule,
@@ -35,11 +33,6 @@ const rotas: Routes = [
     TableModule,
     ButtonModule
   ],
-  exports: [
-    RouterModule
-],
-  declarations: [
-    CategoriaCadastroComponent
-  ]
+  declarations: [DepartamentosCadastroComponent]
 })
-export class CategoriaModule { }
+export class DepartamentosModule { }

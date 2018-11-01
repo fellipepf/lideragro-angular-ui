@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import { Categoria } from '../core/model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,14 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
-  listarTodas(): Observable<void> {
-    return this.http.get<any>(`${this.categoriaUrl}`,)
-     ;
+  listarTodas(): Observable<any> {
 
+    return this.http.get<any>(`${this.categoriaUrl}`)
+      .map(response => {
+        let categorias = response.content;
+
+        return categorias;
+
+      });
   }
 }

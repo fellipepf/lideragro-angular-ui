@@ -16,6 +16,7 @@ import { MessageModule } from 'primeng/message';
 import { ProdutosBuscaComponent } from './produtos-busca/produtos-busca.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
 import { ProdutosRoutingModule } from './produtos-routing.module';
+import { DepartamentosRoutingModule } from '../departamentos/departamento-routing.module';
 
 @NgModule({
   imports: [

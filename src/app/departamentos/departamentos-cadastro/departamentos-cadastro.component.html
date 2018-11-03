@@ -1,8 +1,8 @@
 <div class="container">
-  <form autocomplete="off" #f="ngForm" >
+  <form autocomplete="off"  #f="ngForm" (ngSubmit)="adicionarDepartamento(f)">
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Departamentos</h1>
+        <h1>{{ editandoDepartamento ? 'Edição de' : 'Cadastro ' }} Departamento</h1>
 
       </div>
 
@@ -20,6 +20,7 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="salvar"></button>
+        <button pButton type="button" label="novo" class="ui-button-info" (click)="novo(f)"></button>
       </div>
     </div>
   </form>
@@ -36,17 +37,17 @@
 
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-produto>
+            <ng-template pTemplate="body" let-departamento>
                 <tr>
                     <td>{{departamento.id}}</td>
                     <td>{{departamento.nome}}</td>
                     
                     <td class="col-acoes">
                         <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" class="botao"
-                        [routerLink]="['/produtos', produto.id]"></a>
+                        [routerLink]="['/departamentos', departamento.id]"></a>
                         
                         <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" 
-                                (click)="confimarExclusao(produto)"> </button>
+                                (click)="confimarExclusao(departamento)"> </button>
                     </td>
 
                 </tr>

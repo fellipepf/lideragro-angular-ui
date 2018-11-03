@@ -10,7 +10,7 @@ const rotas: Routes = [
     { path: '', redirectTo: 'produtos', pathMatch: 'full' },
     { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
     { path: 'categorias', component: CategoriaCadastroComponent },
-    { path: 'departamentos', component: DepartamentosCadastroComponent },
+    { path: 'departamentos',  redirectTo: 'departamentos', pathMatch: 'full' },
     { path: '**', redirectTo: 'pagina-nao-encontrada' }
 ];
 

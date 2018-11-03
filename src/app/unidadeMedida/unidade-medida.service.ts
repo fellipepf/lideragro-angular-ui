@@ -14,7 +14,7 @@ export class UnidadeMedidaService {
 
   constructor(private http: HttpClient) { }
 
-  listarTodas(): Observable<void> {
+  listarTodas(): Observable<any> {
     return this.http.get<any>(`${this.unidadeMedidaUrl}`,)
      ;
 

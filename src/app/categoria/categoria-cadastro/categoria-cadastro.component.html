@@ -1,5 +1,5 @@
 <div class="container">
-  <form autocomplete="off" #f="ngForm" >
+  <form autocomplete="off"  #f="ngForm" (ngSubmit)="adicionarCategoria(f)"  >
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Categoria</h1>
@@ -17,12 +17,21 @@
           <p-message severity="error" text="Minimo de {{nome.errors.minlength.requiredLength}} caracteres" *ngIf="nome.hasError('minlength') && nome.dirty"></p-message>
         </div>
       </div>
-
+      
+      <div class="ui-g-6 ui-fluid">
+        <label>Departamento</label>
+        <p-dropdown [options]="departamentos" [autoWidth]="false" required name="departamento" placeholder="Selecione" 
+              [(ngModel)]="categoria.departamento.id">
+        </p-dropdown>
+      </div>
+      
       <div class="ui-g-12">
         <button pButton type="submit" label="salvar"></button>
-      </div>
+      </div> 
     </div>
-  </form>
+    </form>
+    
+ 
 
   <div class="ui-g">
     <div class="ui-g-12">
@@ -32,21 +41,22 @@
                 <tr>
                     <th>Codigo</th>
                     <th>Nome</th>
+                    <th>Departamento</th>
                     <th></th>
 
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-produto>
+            <ng-template pTemplate="body" let-categoria>
                 <tr>
                     <td>{{categoria.id}}</td>
                     <td>{{categoria.nome}}</td>
-                    
+                    <td>{{categoria.departamento.nome}}</td>
                     <td class="col-acoes">
                         <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" class="botao"
-                        [routerLink]="['/produtos', produto.id]"></a>
+                        [routerLink]="['/categorias', categoria.id]"></a>
                         
                         <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" 
-                                (click)="confimarExclusao(produto)"> </button>
+                                (click)="confimarExclusao(categoria)"> </button>
                     </td>
 
                 </tr>

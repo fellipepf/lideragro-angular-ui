@@ -11,12 +11,9 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 
 import { DepartamentosCadastroComponent } from './departamentos-cadastro/departamentos-cadastro.component';
-import { CategoriaCadastroComponent } from '../categoria/categoria-cadastro/categoria-cadastro.component';
+import { DepartamentosRoutingModule } from './departamento-routing.module';
 
-const rotas: Routes = [
-  { path: 'categorias', component: CategoriaCadastroComponent }
 
-];
 
 @NgModule({
   imports: [
@@ -25,13 +22,15 @@ const rotas: Routes = [
     ReactiveFormsModule,
 
     TooltipModule,
-    RouterModule.forChild(rotas),
 
     MessagesModule,
     MessageModule,
     InputTextModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+
+    DepartamentosRoutingModule
+
   ],
   declarations: [DepartamentosCadastroComponent]
 })

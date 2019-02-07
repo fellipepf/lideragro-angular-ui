@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CategoriaModule } from './categoria/categoria.module';
 import { DepartamentosModule } from './departamentos/departamentos.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 
 @NgModule({
@@ -30,7 +31,9 @@ import { DepartamentosModule } from './departamentos/departamentos.module';
     CategoriaModule,
     DepartamentosModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    SegurancaModule
 
   ],
 

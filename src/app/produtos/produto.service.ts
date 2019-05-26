@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders  } from '@angular/common/http';
+import { HttpHeaders  } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { URLSearchParams, RequestOptions } from '@angular/http';
 
@@ -8,9 +8,11 @@ import 'rxjs/add/operator/map';
 
 import { map } from "rxjs/operators";
 import { Subscription } from 'rxjs';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { Produto } from '../core/model';
+import { JwtModule } from '@auth0/angular-jwt';
+import { LiderHttp } from '../seguranca/lider-http';
 
 export class ProdutoFiltro {
   constructor() { }
@@ -32,7 +34,7 @@ export class ProdutoService {
 
   produtosUrl = 'http://localhost:8080/produto';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: LiderHttp) { }
 
   pesquisar(filtro: ProdutoFiltro): Promise<any> {
     let params = new HttpParams();
@@ -58,12 +60,12 @@ export class ProdutoService {
       .then(response => {
         let produtos = response.content;
 
-        let resultado = {
+        const resultado = {
           produtos,
           total: response.totalElements
         };
 
-        return resultado;
+      return resultado;
       });
   }
 
@@ -75,7 +77,7 @@ export class ProdutoService {
   adicionar(produto: Produto): Observable<Produto>{
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
-    return this.http.post<Produto>(this.produtosUrl, JSON.stringify(produto), {headers} )
+    return this.http.post<Produto>(this.produtosUrl, JSON.stringify(produto) )
     .pipe();
 }
 
@@ -112,5 +114,6 @@ export class ProdutoService {
       return products; 
       
        } );
+       
   }
 }

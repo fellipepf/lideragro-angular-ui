@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ProdutosModule } from './produtos/produtos.module';
@@ -14,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CategoriaModule } from './categoria/categoria.module';
 import { DepartamentosModule } from './departamentos/departamentos.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
+import { LiderHttp } from './seguranca/lider-http';
 
 
 @NgModule({
@@ -26,18 +28,19 @@ import { SegurancaModule } from './seguranca/seguranca.module';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    HttpModule,
 
     ProdutosModule,
     CategoriaModule,
     DepartamentosModule,
+    
     CoreModule,
     AppRoutingModule,
-
     SegurancaModule
 
   ],
 
-  providers: [],
+  providers: [LiderHttp],
 
   bootstrap: [AppComponent]
 })

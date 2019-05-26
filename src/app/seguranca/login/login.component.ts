@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../auth.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs/Rx';
+import { map, filter, catchError, mergeMap } from 'rxjs/operators'
+
+
 
 @Component({
   selector: 'app-login',
@@ -7,11 +15,20 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
- 
-  constructor(private auth: AuthService) { }
 
-  login(usuario: string, senha: string){
-    this.auth.login(usuario, senha);
+  constructor(
+    private auth: AuthService,
+    private errorHandler: ErrorHandlerService,
+    private router: Router) { }
+
+  login(usuario: string, senha: string) {
+    this.auth.login(usuario, senha)
+      .then(() => {
+        this.router.navigate(['/produtos']);
+      })
+      .catch(erro => {
+        this.errorHandler.handle(erro);
+      });
   }
 
   ngOnInit() {

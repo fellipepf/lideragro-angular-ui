@@ -41,7 +41,7 @@ export class ProdutosBuscaComponent implements OnInit {
       .then(
         resultado => {
           this.produtos = resultado.produtos,
-            this.totalRegistros = resultado.total
+          this.totalRegistros = resultado.total
 
         })
         .catch(erro => this.errorHandler.handle(erro));

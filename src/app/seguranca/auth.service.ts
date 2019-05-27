@@ -25,7 +25,7 @@ export class AuthService {
 
     const body = `username=${usuario}&password=${senha}&grant_type=password&client=angular`;
 
-    return this.http.post<any>(this.oauthTokenUrl, body, { headers })
+    return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
       .toPromise()
       .then(
         response => {
@@ -61,7 +61,7 @@ export class AuthService {
 obterNovoAccessToken(): Promise<void> {
   const headers = new HttpHeaders()
       .append('Content-Type', 'application/x-www-form-urlencoded')
-      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
+      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy');
 
   const body = 'grant_type=refresh_token';
 

@@ -13,7 +13,7 @@
   </div>
 
   <ul class="navbar-menu" [hidden]="!exibirMenu">
-    <li class="navbar-usuario">Fellipe</li>
+    <li class="navbar-usuario">{{ auth.jwtPayload?.nome }}</li>
     <li class="navbar-menu-item" routerLinkActive="ativo"><a routerLink="/produtos">Produtos</a></li>
     <li class="navbar-menu-item" routerLinkActive="ativo"><a routerLink="/produtos/novo">Novo Produto</a></li>
     <li class="navbar-menu-item" routerLinkActive="ativo"><a routerLink="/categorias">Categorias</a></li>

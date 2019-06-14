@@ -1,0 +1,89 @@
+<div class="container">
+  <form autocomplete="off"  #f="ngForm" (ngSubmit)="adicionarUsuario(f)">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>{{ editandoUsuario ? 'Edição de' : 'Cadastro ' }} Usuário</h1>
+
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome" required minlength="2" #nome="ngModel" [(ngModel)]="usuario.nome" >
+
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Informe o nome" *ngIf="nome.hasError('required') && nome.dirty"></p-message>
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Minimo de {{nome.errors.minlength.requiredLength}} caracteres" *ngIf="nome.hasError('minlength') && nome.dirty"></p-message>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Email</label>
+        <input pInputText type="text" name="email" required minlength="2" #email="ngModel" [(ngModel)]="usuario.email" >
+
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Informe o email" *ngIf="email.hasError('required') && email.dirty"></p-message>
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Minimo de {{email.errors.minlength.requiredLength}} caracteres" *ngIf="email.hasError('minlength') && email.dirty">
+          </p-message>
+        </div>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Senha</label>
+        <input pInputText type="text" name="senha" required minlength="2" #senha="ngModel" [(ngModel)]="usuario.senha" >
+
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Informe a senha" *ngIf="senha.hasError('required') && senha.dirty"></p-message>
+        </div>
+        <div class="ui-grid-col-4">
+          <p-message severity="error" text="Minimo de {{senha.errors.minlength.requiredLength}} caracteres" 
+                 *ngIf="senha.hasError('minlength') && senha.dirty">
+          </p-message>
+        </div>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="salvar"></button>
+        <button pButton type="button" label="novo" class="ui-button-info" (click)="novo(f)"></button>
+      </div>
+    </div>
+  </form>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+
+        <p-table [value]="usuarios" [responsive]="true"  #tabela>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th></th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-usuario>
+                <tr>
+                    <td>{{usuario.codigo}}</td>
+                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.email}}</td>
+
+                    <td class="col-acoes">
+                        <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" class="botao"
+                        [routerLink]="['/usuarios', usuario.codigo]"></a>
+                        
+                        <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" 
+                                (click)="confimarExclusao(usuario)"> </button>
+                    </td>
+
+                </tr>
+            </ng-template>
+
+        </p-table>
+
+    </div>
+</div>
+</div>

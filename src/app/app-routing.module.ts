@@ -5,6 +5,7 @@ import { PaginaNaoEncontradaComponent } from "./core/pagina-nao-encontrada.compo
 import { CategoriaCadastroComponent } from "./categoria/categoria-cadastro/categoria-cadastro.component";
 import { DepartamentosCadastroComponent } from "./departamentos/departamentos-cadastro/departamentos-cadastro.component";
 import { LoginComponent } from "./seguranca/login/login.component";
+import { UsuarioCadastroComponent } from "./usuarios/usuario-cadastro/usuario-cadastro.component";
 
 
 const rotas: Routes = [
@@ -13,6 +14,7 @@ const rotas: Routes = [
     { path: 'categorias', component: CategoriaCadastroComponent },
     { path: 'login', component: LoginComponent },
     { path: 'departamentos',  redirectTo: 'departamentos', pathMatch: 'full' },
+    { path: 'usuarios', component: UsuarioCadastroComponent },
     { path: '**', redirectTo: 'pagina-nao-encontrada' }
 ];
 

@@ -27,6 +27,11 @@ export class Produto {
     observacoes: string;
     nome: string;
     precoVenda: number;
+}
 
-    
+export class Usuario {
+    codigo: number;
+    nome: string;
+    email: string;
+    senha: string;
 }

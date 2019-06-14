@@ -16,6 +16,8 @@ import { CategoriaModule } from './categoria/categoria.module';
 import { DepartamentosModule } from './departamentos/departamentos.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { LiderHttp } from './seguranca/lider-http';
+import { UsuarioCadastroComponent } from './usuarios/usuario-cadastro/usuario-cadastro.component';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { LiderHttp } from './seguranca/lider-http';
     ProdutosModule,
     CategoriaModule,
     DepartamentosModule,
+    UsuariosModule,
     
     CoreModule,
     AppRoutingModule,

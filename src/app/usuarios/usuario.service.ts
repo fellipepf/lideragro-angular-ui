@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { Usuario } from '../core/model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,9 +11,11 @@ import { Usuario } from '../core/model';
 })
 export class UsuarioService {
 
-  usuarioUrl = 'http://localhost:8080/usuario';
+  usuarioUrl :string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.usuarioUrl = `${environment.apiURL}/usuario`;
+   }
 
   listarTodas(): Observable<any> {
 

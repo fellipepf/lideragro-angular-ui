@@ -9,7 +9,8 @@ import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { Http, RequestOptions } from '@angular/http';
-import { environment } from '../../environments/environment';
+import { environment } from 'src/environments/environment';
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');

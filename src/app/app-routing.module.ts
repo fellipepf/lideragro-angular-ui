@@ -9,7 +9,7 @@ import { UsuarioCadastroComponent } from "./usuarios/usuario-cadastro/usuario-ca
 
 
 const rotas: Routes = [
-    { path: '', redirectTo: 'produtos', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
     { path: 'categorias', component: CategoriaCadastroComponent },
     { path: 'login', component: LoginComponent },

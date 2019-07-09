@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Departamento } from '../core/model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,9 +12,11 @@ import { Departamento } from '../core/model';
 })
 export class DepartamentoService {
 
-  departamentoUrl = 'http://localhost:8080/departamento';
+  departamentoUrl :string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.departamentoUrl = `${environment.apiURL}/departamento`;
+  }
 
   listarTodas(): Observable<any> {
 

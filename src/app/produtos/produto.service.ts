@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { Produto } from '../core/model';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LiderHttp } from '../seguranca/lider-http';
+import { environment } from 'src/environments/environment';
 
 export class ProdutoFiltro {
   constructor() { }
@@ -32,9 +33,11 @@ export class ProdutoFiltro {
 
 export class ProdutoService {
 
-  produtosUrl = 'http://localhost:8080/produto';
+  produtosUrl :string;
 
-  constructor(private http: LiderHttp) { }
+  constructor(private http: LiderHttp) {
+    this.produtosUrl = `${environment.apiURL}/produto`;
+   }
 
   pesquisar(filtro: ProdutoFiltro): Promise<any> {
     let params = new HttpParams();
@@ -55,7 +58,7 @@ export class ProdutoService {
       params = params.append('id', filtro.codigo.toString())
     }
 
-    return this.http.get<any>(`${this.produtosUrl}?resumo`, { params })
+    return this.http.get<any>(`${this.produtosUrl}?resumo`, { params,withCredentials: true })
       .toPromise()
       .then(response => {
         let produtos = response.content;

@@ -17,7 +17,7 @@ import { map, filter, catchError, mergeMap } from 'rxjs/operators'
 export class LoginComponent implements OnInit {
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private errorHandler: ErrorHandlerService,
     private router: Router) { }
 

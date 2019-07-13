@@ -18,7 +18,7 @@ export class ProdutosBuscaComponent implements OnInit {
   produtos: Array<any>;
   filtro = new ProdutoFiltro();
   totalRegistros = 0;
-  @ViewChild('tabela') grid;
+  @ViewChild('tabela', {static: false}) grid;
 
   constructor(
     private produtoService: ProdutoService,

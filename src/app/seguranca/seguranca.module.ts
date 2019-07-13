@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { Http, RequestOptions } from '@angular/http';
 import { environment } from 'src/environments/environment';
+import { AuthGuard } from './auth.guard';
 
 
 export function tokenGetter() {
@@ -37,7 +38,7 @@ export function tokenGetter() {
   ],
   declarations: [LoginComponent],
   providers: [
-    
+    AuthGuard
   ]
 })
 export class SegurancaModule { }

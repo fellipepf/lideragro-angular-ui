@@ -43,7 +43,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 
   ],
 
-  providers: [LiderHttp],
+  providers: [],
 
   bootstrap: [AppComponent]
 })

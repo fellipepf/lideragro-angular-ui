@@ -58,7 +58,7 @@ export class ProdutoService {
       params = params.append('id', filtro.codigo.toString())
     }
 
-    return this.http.get<any>(`${this.produtosUrl}?resumo`, { params,withCredentials: true })
+    return this.http.get<any>(`${this.produtosUrl}?resumo`, { params })
       .toPromise()
       .then(response => {
         let produtos = response.content;

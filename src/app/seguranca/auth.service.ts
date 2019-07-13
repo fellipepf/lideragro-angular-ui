@@ -20,7 +20,7 @@ export class AuthService {
     this.carregarToken();
   }
 
-  login(usuario: string, senha: string) {
+  login(usuario: string, senha: string): Promise<void> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
     headers = headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy'); //angular:@ngul@r
@@ -30,13 +30,11 @@ export class AuthService {
     return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
       .toPromise()
       .then(
-        response => {
-          console.log(response);
-          
+        response => { 
           this.armazenarToken(response.access_token);
         },
         err => {
-          console.log(JSON.stringify(err));
+         // console.log(JSON.stringify(err));
 
           if (err.status == 400){
             const responseJson = err.error;
@@ -96,6 +94,16 @@ limparAccessToken() {
 
   temPermissao(permissao: string) {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+  }
+
+  temQualquerPermissao(roles) {
+    for (const role of roles) {
+      if (this.temPermissao(role)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private armazenarToken(token: string) {

@@ -18,6 +18,8 @@ import { ProdutoService } from '../produtos/produto.service';
 import { CategoriaService } from './../categoria/categoria.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { AuthService } from '../seguranca/auth.service';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
+import { LiderHttp } from '../seguranca/lider-http';
 
 
 
@@ -36,6 +38,7 @@ registerLocaleData(localePt);
   declarations: [
     NavbarComponent,
     PaginaNaoEncontradaComponent,
+    NaoAutorizadoComponent
   ],
 
   exports:[
@@ -50,7 +53,9 @@ registerLocaleData(localePt);
 
     ConfirmationService,
     AuthService,
+    LiderHttp,
     ErrorHandlerService,
+
     JwtHelperService,
     Title,
     { provide: LOCALE_ID , useValue: 'pt' }   //provider por valor

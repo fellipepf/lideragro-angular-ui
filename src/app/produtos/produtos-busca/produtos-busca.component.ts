@@ -6,6 +6,7 @@ import { ToastyService } from 'ng2-toasty';
 
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { ProdutoService, ProdutoFiltro } from '../produto.service';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-produtos-busca',
@@ -25,7 +26,8 @@ export class ProdutosBuscaComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
-    private title: Title
+    private title: Title,
+    private auth: AuthService
     ) {
 
   }

@@ -25,12 +25,7 @@ export class ProdutoFiltro {
   itensPorPagina = 5;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-
-
-
+@Injectable()
 export class ProdutoService {
 
   produtosUrl :string;

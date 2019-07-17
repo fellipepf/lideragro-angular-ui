@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { SegurancaModule } from './seguranca/seguranca.module';
 import { LiderHttp } from './seguranca/lider-http';
 import { UsuarioCadastroComponent } from './usuarios/usuario-cadastro/usuario-cadastro.component';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { JwtHttpInterceptor } from './seguranca/jwt-interceptor';
 
 
 @NgModule({
@@ -28,9 +29,6 @@ import { UsuariosModule } from './usuarios/usuarios.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    HttpModule,
 
     ProdutosModule,
     CategoriaModule,
@@ -43,7 +41,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 
   ],
 
-  providers: [],
+  providers: [  { provide: HTTP_INTERCEPTORS, useClass: JwtHttpInterceptor, multi: true }],
 
   bootstrap: [AppComponent]
 })

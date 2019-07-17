@@ -20,6 +20,9 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
 import { AuthService } from '../seguranca/auth.service';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { LiderHttp } from '../seguranca/lider-http';
+import { DepartamentoService } from '../departamentos/departamento.service';
+import { UnidadeMedidaService } from '../unidadeMedida/unidade-medida.service';
+import { UsuarioService } from '../usuarios/usuario.service';
 
 
 
@@ -50,6 +53,9 @@ registerLocaleData(localePt);
   providers: [
     ProdutoService,
     CategoriaService,
+    DepartamentoService,
+    UnidadeMedidaService,
+    UsuarioService,
 
     ConfirmationService,
     AuthService,

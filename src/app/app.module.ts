@@ -19,6 +19,7 @@ import { LiderHttp } from './seguranca/lider-http';
 import { UsuarioCadastroComponent } from './usuarios/usuario-cadastro/usuario-cadastro.component';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { JwtHttpInterceptor } from './seguranca/jwt-interceptor';
+import { RelatoriosModule } from './relatorios/relatorios.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { JwtHttpInterceptor } from './seguranca/jwt-interceptor';
     CategoriaModule,
     DepartamentosModule,
     UsuariosModule,
+    RelatoriosModule,
     
     CoreModule,
     AppRoutingModule,

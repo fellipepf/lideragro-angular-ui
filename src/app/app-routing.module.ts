@@ -7,6 +7,7 @@ import { DepartamentosCadastroComponent } from "./departamentos/departamentos-ca
 import { LoginComponent } from "./seguranca/login/login.component";
 import { UsuarioCadastroComponent } from "./usuarios/usuario-cadastro/usuario-cadastro.component";
 import { NaoAutorizadoComponent } from "./core/nao-autorizado.component";
+import { RelatorioProdutosComponent } from "./relatorios/relatorio-produtos/relatorio-produtos.component";
 
 
 const rotas: Routes = [
@@ -14,6 +15,7 @@ const rotas: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'departamentos',  redirectTo: 'departamentos', pathMatch: 'full' },
     { path: 'usuarios', component: UsuarioCadastroComponent },
+    { path: 'relatorios', component: RelatorioProdutosComponent },
 
     { path: 'nao-autorizado', component: NaoAutorizadoComponent },
     { path: '', redirectTo: 'login', pathMatch: 'full' },

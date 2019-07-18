@@ -23,6 +23,7 @@ import { LiderHttp } from '../seguranca/lider-http';
 import { DepartamentoService } from '../departamentos/departamento.service';
 import { UnidadeMedidaService } from '../unidadeMedida/unidade-medida.service';
 import { UsuarioService } from '../usuarios/usuario.service';
+import { RelatoriosService } from '../relatorios/relatorios.service';
 
 
 
@@ -56,6 +57,7 @@ registerLocaleData(localePt);
     DepartamentoService,
     UnidadeMedidaService,
     UsuarioService,
+    RelatoriosService,
 
     ConfirmationService,
     AuthService,

@@ -35,7 +35,7 @@ export class AuthService {
         },
         err => {
          // console.log(JSON.stringify(err));
-
+          console.log(err.status);
           if (err.status == 400){
             const responseJson = err.error;
 

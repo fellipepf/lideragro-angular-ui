@@ -32,6 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.auth.isAccessTokenInvalido()){
+      this.router.navigate(['/produtos']);
+    }
   }
 
 }
